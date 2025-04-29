@@ -1,6 +1,26 @@
 # BLE-HM10
 This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors (It works with a PIC32MX from MPLAB) . I found several sources but none of then was working on the first shot or it simply something was updated and it is no longer valid.
 
+- [IO DEVICE - ARDUINO](#io-device---arduino)
+    + [Files](#files)
+    + [Requirements](#requirements)
+    + [Code Description](#code-description)
+    + [How to Use](#how-to-use)
+    + [References](#references)
+- [Terminals](#terminals)
+  * [APP from store](#app-from-store)
+  * [MIT APP INVENTOR](#mit-app-inventor)
+    + [How to load the app](#how-to-load-the-app)
+    + [How to use the app](#how-to-use-the-app)
+    + [References](#references-1)
+  * [PYTHON UART Service Example](#python-uart-service-example)
+    + [Features](#features)
+    + [Prerequisites](#prerequisites)
+    + [Setup Instructions](#setup-instructions)
+    + [Usage](#usage)
+    + [Key Constants](#key-constants)
+    + [References](#references-2)
+
 # IO DEVICE - ARDUINO
 This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE) HM-10 module using UART (serial communication). It uses the `SoftwareSerial` library to create a virtual serial port, allowing AT commands to be sent to the module to change its configuration, such as its device name.
 
