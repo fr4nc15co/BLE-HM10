@@ -14,7 +14,7 @@ This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE)
 - HM-10 BLE module
 - Wiring:
   - HM-10 TX → Arduino Pin 10
-  - HM-10 RX → Arduino Pin 11 (through a voltage divider)
+  - HM-10 RX → Arduino Pin 11 
 - Library: `SoftwareSerial` (included with the Arduino IDE)
 
 ### Code Description
@@ -35,10 +35,33 @@ This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE)
    ```cpp
    String NAME = "AT+NAMEBT05-" + String(0) + String(1) + "\r\n";
 ### References
-Original code adapted from hbldh/bleak. Documentation for the bleak library: https://bleak.readthedocs.io/
+Original code adapted from https://blog.espol.edu.ec/girni/hm-10-serial-con-arduino-a-pc/
 
 # Terminals
 ## MIT APP INVENTOR
+After several trials, especially for IOS, I obtained a working code to test the UART communications using IOS and ANDROID systems.
+
+The app looks like this (the screenshot is from an Iphone 15 Pro) and can be adapted depending on your application:
+
+
+
+### How to load the app
+1. Import the aia project to your MIT APP INVENTOR. Please, check that the 2 TextSize blocks for the list viewers are enabled (I don't know why they are disabled when the project is loaded.) 
+2. Click Connect/Ai Companion
+3. Open your Mit APP inventor app in your device
+
+### How to use the app
+1. Connect the BLE module to the Arduino or IoT device. It should be blinking.
+2. Scan for new devices and click the one you want to connect. It should appear like: "Selected <NAME>"
+3. Click Connect. Once connected, it should appear "Connected to <NAME>"
+4. You can write messages and click send or you can receive message
+5. To clear the list, click CLS
+6. To add/remove '\n' from the end of your string, click ENDL/NO ENDL.
+7. Pressing a message in the console will be copied to the string to send box.
+
+
+### References
+https://iot.appinventor.mit.edu/iot/reference/bluetoothle
 
 ## PYTHON: UART Service Example
 This project demonstrates how to use the Nordic Semiconductor (nRF) UART service with Python. It allows communication with a BLE (Bluetooth Low Energy) device using the UART service.
