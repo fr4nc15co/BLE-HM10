@@ -1,5 +1,5 @@
 # BLE-HM10
-This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors
+This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors (It works with a PIC32MX from MPLAB) . I found several sources but none of then was working on the first shot or it simply something was updated and it is no longer valid.
 
 # IO DEVICE - ARDUINO
 This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE) HM-10 module using UART (serial communication). It uses the `SoftwareSerial` library to create a virtual serial port, allowing AT commands to be sent to the module to change its configuration, such as its device name.
@@ -24,6 +24,7 @@ This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE)
   - `SoftwareSerial`: Communication with the HM-10 module.
 - Sends AT commands to the BLE module:
   - Changes the module's name using the `AT+NAME` command.
+- Act as a terminal with the serial monitor of the ARDUINO IDE
 
 ### How to Use
 
@@ -31,24 +32,35 @@ This project sets up an Arduino to communicate with a Bluetooth Low Energy (BLE)
 2. Upload the sketch to the Arduino.
 3. Open the Arduino IDE Serial Monitor at 9600 baud.
 4. Watch for responses from the BLE module.
-5. You can customize the name by editing this line:
+5. You can customize the name by editing this line and changing the boolean variable on top of the file:
    ```cpp
    String NAME = "AT+NAMEBT05-" + String(0) + String(1) + "\r\n";
 ### References
 Original code adapted from https://blog.espol.edu.ec/girni/hm-10-serial-con-arduino-a-pc/
 
 # Terminals
+Existing terminals are an easy way to check if the module is working. However, since I don't want to depend on external app providers, I found MIT APP INVENTOR or a PYTHON terminal more interesting for my students since they can customize and create their own interfaces. Please check the following alternatives.
+
+
+## APP from store:
+I wrote here the ones that work for me:
+- On Android:
+  - Pending to write.
+- On IOS (More complicate to find):
+  -  [BLE Serial Tiny](https://apps.apple.com/nl/app/ble-serial-tiny/id1607862132):I found it in this [Hangar42](https://www.hangar42.nl/hm10) post with a link to a github where you can find the link to the app https://github.com/hoiberg/HM10-BluetoothSerial-iOS 
+  - [LightBlue](https://apps.apple.com/nl/app/lightblue/id557428110) or [nRF Connect](https://apps.apple.com/nl/app/nrf-connect-for-mobile/id1054362403) to learn about the UUID service and its characteristics.
+
 ## MIT APP INVENTOR
 After several trials, especially for IOS, I obtained a working code to test the UART communications using IOS and ANDROID systems.
 
 The app looks like this (the screenshot is from an Iphone 15 Pro) and can be adapted depending on your application:
-
-
+<img src="MitAppInventor/ScreenshotIphone.jpg" width="300" />
 
 ### How to load the app
 1. Import the aia project to your MIT APP INVENTOR. Please, check that the 2 TextSize blocks for the list viewers are enabled (I don't know why they are disabled when the project is loaded.) 
-2. Click Connect/Ai Companion
-3. Open your Mit APP inventor app in your device
+2. Write IOS or ANDROID in the OS global variable   <img src="MitAppInventor/Captura.JPG" width="300" />. This has been the most significant pain since IOS and ANDROID act differently in the connection and the send block structure. 
+3. Click Connect/Ai Companion
+4. Open your Mit APP inventor app in your device
 
 ### How to use the app
 1. Connect the BLE module to the Arduino or IoT device. It should be blinking.
@@ -95,10 +107,10 @@ This project demonstrates how to use the Nordic Semiconductor (nRF) UART service
    ```sh
    python uart_service.py
 
-5. Usage
-When prompted, enter the BLE address of the device you want to connect to. If you know the address beforehand, you can set it in the BLE_ADDRESS variable in the script.
-Type messages into the terminal and press ENTER to send them to the BLE device. The BLE device's responses will be displayed in the terminal.
-To exit, press CTRL+C to force quit.
+### Usage
+1. When prompted, enter the BLE address of the device you want to connect to. If you know the address beforehand, you can set it in the BLE_ADDRESS variable in the script.
+2. Type messages into the terminal and press ENTER to send them to the BLE device. The BLE device's responses will be displayed in the terminal.
+3. To exit, press CTRL+C to force quit.
 
 ### Key Constants
 - UART_SERVICE_UUID: UUID of the UART service.
