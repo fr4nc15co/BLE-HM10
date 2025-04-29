@@ -132,6 +132,8 @@ This project demonstrates how to use the Nordic Semiconductor (nRF) UART service
 2. Type messages into the terminal and press ENTER to send them to the BLE device. The BLE device's responses will be displayed in the terminal.
 3. To exit, press CTRL+C to force quit.
 
+<img src="Python/ExampleOfUsage.JPG" width="300" />
+
 ### Key Constants
 - UART_SERVICE_UUID: UUID of the UART service.
 - UART_RX_CHAR_UUID: UUID of the RX characteristic.
