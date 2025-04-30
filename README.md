@@ -1,5 +1,5 @@
 # BLE-HM10
-This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors (It works with a PIC32MX from MPLAB) . I found several sources but none of then was working on the first shot or it simply something was updated and it is no longer valid.
+This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors (It works with a PIC32MX from MPLAB) . I found several sources but none of then was working on the first shot or it simply something was updated and it is no longer valid. More about BLE in this link from [Adafruit](https://learn.adafruit.com/introduction-to-bluetooth-low-energy/introduction).
 
 - [IO DEVICE - ARDUINO](#io-device---arduino)
     + [Files](#files)
