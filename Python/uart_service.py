@@ -23,6 +23,7 @@ Steps:
 
 import asyncio
 import sys
+import platform
 from itertools import count, takewhile
 from typing import Iterator
 
@@ -95,6 +96,35 @@ async def uart_terminal():
         await client.start_notify(UART_TX_CHAR_UUID, handle_rx)
         
         print("Connected, start typing and press ENTER...Control+C to exit.")
+        print(f"Platform: {platform.system()} {platform.version()}")
+
+        async def write_with_debug(client, char, data: bytes):
+            """Write helper that logs and uses a macOS-friendly default.
+
+            On macOS some devices expect "write with response" instead of
+            "write without response". Use response=True on Darwin by
+            default, but log and fall back if an error occurs.
+            """
+            use_response = platform.system() == "Darwin"
+            # Prefer the characteristic's reported max size for slicing when available
+            max_size = getattr(char, "max_write_without_response_size", 20) or 20
+
+            for chunk in sliced(data, max_size):
+                try:
+                    print(f"Writing to {char.uuid}: {chunk!r} (len={len(chunk)}) response={use_response} properties={getattr(char, 'properties', None)}")
+                    await client.write_gatt_char(char, chunk, response=use_response)
+                    # small pause to give the adapter/remote time to process
+                    await asyncio.sleep(0.02)
+                except Exception as e:
+                    print(f"Write error (response={use_response}): {e}")
+                    # Try the opposite mode as a fallback
+                    try:
+                        alt = not use_response
+                        print(f"Retrying write with response={alt}")
+                        await client.write_gatt_char(char, chunk, response=alt)
+                        await asyncio.sleep(0.02)
+                    except Exception as e2:
+                        print(f"Retry failed: {e2}")
 
         loop = asyncio.get_running_loop()
         nus = client.services.get_service(UART_SERVICE_UUID)
@@ -104,8 +134,7 @@ async def uart_terminal():
         data = b"Hello UART\n"
         #data = bytes([0x01,0x0C, 0x0A, 0x01])  # Ejemplo: enviar bytes específicos
         # Dividir datos en fragmentos si es necesario
-        for s in sliced(data, rx_char.max_write_without_response_size):
-            await client.write_gatt_char(rx_char, s, response=False)
+        await write_with_debug(client, rx_char, data)
 
         while True:
             # This waits until you type a line and press ENTER.
@@ -125,8 +154,7 @@ async def uart_terminal():
             # single BLE packet. We can use the max_write_without_response_size
             # property to split the data into chunks that will fit.
 
-            for s in sliced(data, rx_char.max_write_without_response_size):
-                await client.write_gatt_char(rx_char, s, response=False)
+            await write_with_debug(client, rx_char, data)
 
             print("sent:", data)
 
