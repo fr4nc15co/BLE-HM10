@@ -73,7 +73,7 @@ I wrote here the ones that work for me:
 ## MIT APP INVENTOR
 After several trials, especially for IOS, I obtained a working code to test the UART communications using IOS and ANDROID systems.
 
-The app looks like this (the screenshot is from an Iphone 15 Pro) and can be adapted depending on your application:
+The app looks like this (the screenshot is from an Iphone 15 Pro running ios 18) and can be adapted depending on your application:
 <img src="MitAppInventor/ScreenshotIphone.jpg" width="300" />
 
 ### How to load the app
