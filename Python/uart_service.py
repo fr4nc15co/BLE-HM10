@@ -79,8 +79,29 @@ async def uart_terminal():
     device_selected = await BleakScanner.find_device_by_address(ble_address_selected)
 
     if device_selected is None:
-        print("No matching device found, you may need to edit BLE_ADDRESS or scan for finding a new id.")
-        sys.exit(1)
+        # Fallback: try a fresh discovery and allow the user to pick from a list.
+        print("No device found with that address. Running a fresh discovery and listing nearby devices...")
+        devices_nearby = await BleakScanner.discover()
+        if not devices_nearby:
+            print("No BLE devices discovered. Make sure your HM-10 is advertising and try again.")
+            return
+
+        print("Discovered devices:")
+        for i, d in enumerate(devices_nearby):
+            print(f"[{i}] {d}")
+
+        choice = input("Enter the index of the device to connect to (or press ENTER to cancel): ")
+        if choice.strip() == "":
+            print("No device selected, exiting.")
+            return
+
+        try:
+            idx = int(choice)
+            device_selected = devices_nearby[idx]
+            print(f"Selected device: {device_selected}")
+        except Exception:
+            print("Invalid selection, exiting.")
+            return
 
     
     def handle_disconnect(_: BleakClient):
@@ -105,13 +126,15 @@ async def uart_terminal():
             "write without response". Use response=True on Darwin by
             default, but log and fall back if an error occurs.
             """
-            use_response = platform.system() == "Darwin"
+            #print(f"Platform: {platform.system()}")
+            use_response = False #platform.system() == "Darwin"
+
             # Prefer the characteristic's reported max size for slicing when available
             max_size = getattr(char, "max_write_without_response_size", 20) or 20
 
             for chunk in sliced(data, max_size):
                 try:
-                    print(f"Writing to {char.uuid}: {chunk!r} (len={len(chunk)}) response={use_response} properties={getattr(char, 'properties', None)}")
+                    # print(f"Writing to {char.uuid}: {chunk!r} (len={len(chunk)}) response={use_response} properties={getattr(char, 'properties', None)}")
                     await client.write_gatt_char(char, chunk, response=use_response)
                     # small pause to give the adapter/remote time to process
                     await asyncio.sleep(0.02)
@@ -120,6 +143,7 @@ async def uart_terminal():
                     # Try the opposite mode as a fallback
                     try:
                         alt = not use_response
+                        use_response = alt
                         print(f"Retrying write with response={alt}")
                         await client.write_gatt_char(char, chunk, response=alt)
                         await asyncio.sleep(0.02)
