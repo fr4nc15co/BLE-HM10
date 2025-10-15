@@ -5,7 +5,8 @@ This is a repository for the ones interested in developing BLE COM with modules 
 - UART_SERVICE_UUID: UUID of the UART service.              FFE0
 - UART_RX_CHAR_UUID: UUID of the RX characteristic.         FFE1
 - UART_TX_CHAR_UUID: UUID of the TX characteristic.         FFE1
-
+  
+### Index
 - [IO DEVICE - ARDUINO](#io-device---arduino)
     + [Files](#files)
     + [Requirements](#requirements)
