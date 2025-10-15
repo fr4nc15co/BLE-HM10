@@ -73,8 +73,13 @@ I wrote here the ones that work for me:
 ## MIT APP INVENTOR
 After several trials, especially for IOS, I obtained a working code to test the UART communications using IOS and ANDROID systems.
 
-The app looks like this (the screenshot is from an Iphone 15 Pro running ios 18) and can be adapted depending on your application:
+The app looks like this (the screenshot is from an Iphone 15 Pro running ios 18 and ios 26) and can be adapted depending on your application:
 <img src="MitAppInventor/ScreenshotIphone.jpg" width="300" />
+
+Please take into account that OS are continously updating. For instance, in IOS18 the writebytes works but in IOS26 only works with writebyteswithresponse. If something is not working, try to disable/enable these blocks.
+
+<img src="MitAppInventor/Change in Send function.png" width="300" />
+
 
 ### How to load the app
 1. Import the aia project to your MIT APP INVENTOR. Please, check that the 2 TextSize blocks for the list viewers are enabled (I don't know why they are disabled when the project is loaded.) 
