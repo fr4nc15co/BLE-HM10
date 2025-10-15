@@ -88,8 +88,9 @@ Please take into account that OS are continously updating. For instance, in IOS1
 4. Open your Mit APP inventor app in your device
 
 ### How to use the app
-1. Connect the BLE module to the Arduino or IoT device. It should be blinking.
-2. Scan for new devices and click the one you want to connect. It should appear like: "Selected <NAME>"
+1. Connect the BLE module to the Arduino, Microchip board or IoT device. It should be blinking.
+2. Scan for new devices and click the one you want to connect. Look for the name of the module (Predefined <NAME> = "BT05-xx"). It should appear like: "Selected <NAME>". 
+2b. A new option has been added to show only devices with BT in the name.
 3. Click Connect. Once connected, it should appear "Connected to <NAME>"
 4. You can write messages and click send or you can receive message
 5. To clear the list, click CLS
