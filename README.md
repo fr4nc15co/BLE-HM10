@@ -1,6 +1,11 @@
 # BLE-HM10
 This is a repository for the ones interested in developing BLE COM with modules such as HM10 with their arduino or microprocessors (It works with a PIC32MX from MPLAB) . I found several sources but none of then was working on the first shot or it simply something was updated and it is no longer valid. More about BLE in this link from [Adafruit](https://learn.adafruit.com/introduction-to-bluetooth-low-energy/introduction).
 
+### Key Constants
+- UART_SERVICE_UUID: UUID of the UART service.              FFE0
+- UART_RX_CHAR_UUID: UUID of the RX characteristic.         FFE1
+- UART_TX_CHAR_UUID: UUID of the TX characteristic.         FFE1
+
 - [IO DEVICE - ARDUINO](#io-device---arduino)
     + [Files](#files)
     + [Requirements](#requirements)
@@ -73,7 +78,8 @@ I wrote here the ones that work for me:
 ## MIT APP INVENTOR
 After several trials, especially for IOS, I obtained a working code to test the UART communications using IOS and ANDROID systems.
 
-The app looks like this (the screenshot is from an Iphone 15 Pro running ios 18 and ios 26) and can be adapted depending on your application:
+The app looks like this (the screenshot is from an Iphone 15 Pro running ios 18 in april 2025) and can be adapted depending on your application:
+
 <img src="MitAppInventor/ScreenshotIphone.jpg" width="300" />
 
 Please take into account that OS are continously updating. For instance, in IOS18 the writebytes works but in IOS26 only works with writebyteswithresponse. If something is not working, try to disable/enable these blocks.
