@@ -144,6 +144,8 @@ This project demonstrates how to use the Nordic Semiconductor (nRF) UART service
 1. When prompted, enter the BLE address of the device you want to connect to. If you know the address beforehand, you can set it in the BLE_ADDRESS variable in the script.
 2. Type messages into the terminal and press ENTER to send them to the BLE device. The BLE device's responses will be displayed in the terminal.
 3. To exit, press CTRL+C to force quit.
+In MAC,  this line, use_response = False #platform.system() == "Darwin",  should be use_response = platform.system() == "Darwin"
+
 
 <img src="Python/ExampleOfUsage.JPG" width="300" />
 
