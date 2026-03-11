@@ -89,10 +89,10 @@ Please take into account that OS are continously updating. For instance, in IOS1
 
 
 ### How to load the app
-1. Import the aia project to your MIT APP INVENTOR. Please, check that the 2 TextSize blocks for the list viewers are enabled (I don't know why they are disabled when the project is loaded.) 
+1. Import the aia project to your MIT APP INVENTOR web page. Please, check that the 2 TextSize blocks for the list viewers are enabled (I don't know why they are disabled when the project is loaded.) 
 2. Write IOS or ANDROID in the OS global variable   <img src="MitAppInventor/Captura.JPG" width="300" />. This has been the most significant pain since IOS and ANDROID act differently in the connection and the send block structure. 
 3. Click Connect/Ai Companion
-4. Open your Mit APP inventor app in your device
+4. Downnload and open your Mit APP inventor app in your phone
 
 ### How to use the app
 1. Connect the BLE module to the Arduino, Microchip board or IoT device. It should be blinking.
